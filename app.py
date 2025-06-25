@@ -7,7 +7,7 @@ import time
 import base64
 
 st.set_page_config(
-    page_title="Green Guard - Guava Leaf Classifier",
+    page_title="GreenGuard - Guava Leaf Classifier",
     page_icon="🌿",
     layout="wide"
 )
@@ -45,6 +45,7 @@ def set_bg_with_theme(light_img, dark_img, dark_mode):
         border-radius: 15px;
         padding: 15px;
         margin: 10px auto;
+        max-width: 90%;
         width: 450px;
         text-align: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -60,6 +61,8 @@ def set_bg_with_theme(light_img, dark_img, dark_mode):
         color: {"#000000" if dark_mode else "#000000"};
         font-weight: bold;
         transition: transform 0.3s ease;
+        max-width: 100%;
+        word-wrap: break-word;
     }}
     .result-card:hover {{
         transform: scale(1.05);
@@ -71,11 +74,46 @@ def set_bg_with_theme(light_img, dark_img, dark_mode):
         border-radius: 15px;
         text-align: center;
         box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        max-width: 90%;
         width: 400px;
         margin: 30px auto;
         font-size: 18px;
         font-weight: bold;
         color: {"#000000" if dark_mode else "#000000"};
+    }}
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {{
+        .title {{
+            font-size: 2em;
+        }}
+        .subheader {{
+            font-size: 1em;
+        }}
+        .upload-box {{
+            width: 95%;
+            padding: 10px;
+            font-size: 1em;
+        }}
+        .result-card {{
+            font-size: 0.9em;
+            padding: 8px;
+        }}
+        .summary {{
+            width: 95%;
+            font-size: 1em;
+            padding: 15px;
+        }}
+        /* Make columns wrap on small screens */
+        .stApp > div[data-testid="stHorizontalBlock"] > div {{
+            flex-wrap: wrap;
+            justify-content: center;
+        }}
+        /* Force Streamlit columns to stack vertically on mobile */
+        .stApp .css-1lcbmhc.e1fqkh3o3 {{
+            flex-direction: column !important;
+            align-items: center !important;
+        }}
     }}
     </style>
     """
@@ -96,7 +134,7 @@ def load_cnn_model():
 
 model = load_cnn_model()
 
-st.markdown('<div class="title">🌿 Green Guard 🌿</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">🌿 GreenGuard 🌿</div>', unsafe_allow_html=True)
 st.markdown('<div class="subheader">AI-powered Guava Leaf Disease Detector</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="upload-box">📤 Upload Guava Leaf Images (JPG/PNG):</div>', unsafe_allow_html=True)
