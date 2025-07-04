@@ -208,6 +208,6 @@ if st.session_state.uploaded_files:
         """, unsafe_allow_html=True)
 else:
     st.markdown(
-        '<div class="upload-box">👈 Please upload one or more guava leaf images to begin analysis.</div>', 
+        '<div class="upload-box">👈 Please upload image of one or more guava leaf to begin analysis.</div>', 
         unsafe_allow_html=True
     )
